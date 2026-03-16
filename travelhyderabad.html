@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Hyderabad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg:       #fdfaf5;
+            --bg2:      #f7f2ea;
+            --white:    #ffffff;
+            --ruby:     #e8344a;
+            --ruby-l:   #ff6b7a;
+            --indigo:   #4338ca;
+            --indigo-l: #818cf8;
+            --emerald:  #059669;
+            --amber:    #d97706;
+            --amber-l:  #fbbf24;
+            --ink:      #18120a;
+            --mid:      #6b5e4e;
+            --dim:      #a8977e;
+            --g1: linear-gradient(135deg, #e8344a 0%, #d97706 50%, #4338ca 100%);
+            --g2: linear-gradient(135deg, #4338ca 0%, #7c3aed 50%, #e8344a 100%);
+            --g3: linear-gradient(110deg, #fbbf24, #e8344a, #4338ca);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            z-index: 999;
+            width: calc(100% - 80px); max-width: 1100px;
+            height: 56px;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(24px) saturate(1.8);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 100px;
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 0 8px 0 28px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px; font-style: italic;
+            background: var(--g1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+        .nav-links { display: flex; gap: 2px; align-items: center; }
+        .nav-links a {
+            color: var(--mid); text-decoration: none;
+            font-size: 13px; font-weight: 500;
+            padding: 9px 18px; border-radius: 100px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--ink); background: var(--bg2); }
+        .nav-cta {
+            background: var(--ink); color: white !important;
+            padding: 10px 22px !important; border-radius: 100px !important;
+            font-weight: 600 !important; font-size: 13px !important;
+            transition: opacity 0.2s !important;
+        }
+        .nav-cta:hover { opacity: 0.82; background: var(--ink) !important; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 110px 60px 80px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 75% 30%, rgba(67,56,202,0.09) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 55% at 25% 75%, rgba(232,52,74,0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 45% 45% at 60% 90%, rgba(217,119,6,0.07) 0%, transparent 50%),
+                var(--bg);
+        }
+        .hero-left { position: relative; z-index: 2; }
+        .hero-chip {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: white; border: 1px solid rgba(0,0,0,0.07);
+            border-radius: 100px; padding: 8px 18px 8px 10px;
+            margin-bottom: 36px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            opacity: 0; animation: up 0.9s 0.0s ease both;
+        }
+        .chip-badge {
+            background: var(--g1); color: white; font-size: 10px; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 100px;
+        }
+        .chip-text { font-size: 13px; font-weight: 500; color: var(--mid); }
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(58px, 7.5vw, 100px);
+            line-height: 1.0; letter-spacing: -0.025em;
+            color: var(--ink); margin-bottom: 28px;
+            opacity: 0; animation: up 0.9s 0.15s ease both;
+        }
+        .hero h1 .line2 {
+            font-style: italic;
+            background: var(--g1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; display: block;
+        }
+        .hero-body {
+            font-size: 17px; font-weight: 300; color: var(--mid);
+            line-height: 1.75; max-width: 460px; margin-bottom: 40px;
+            opacity: 0; animation: up 0.9s 0.3s ease both;
+        }
+        .hero-btns {
+            display: flex; gap: 12px; align-items: center;
+            margin-bottom: 56px;
+            opacity: 0; animation: up 0.9s 0.45s ease both;
+        }
+        .b1 {
+            background: var(--ink); color: white;
+            padding: 15px 32px; border-radius: 100px;
+            text-decoration: none; font-size: 14px; font-weight: 600;
+            box-shadow: 0 8px 24px rgba(24,18,10,0.25);
+            transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
+        }
+        .b1:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(24,18,10,0.32); }
+        .b2 {
+            color: var(--indigo); font-size: 14px; font-weight: 600;
+            text-decoration: none; padding: 15px 24px; border-radius: 100px;
+            border: 1.5px solid rgba(67,56,202,0.25);
+            transition: all 0.2s; display: inline-block;
+        }
+        .b2:hover { background: rgba(67,56,202,0.06); border-color: rgba(67,56,202,0.5); }
+        .hero-stats { display: flex; gap: 0; opacity: 0; animation: up 0.9s 0.6s ease both; }
+        .hstat { padding: 0 32px 0 0; border-right: 1px solid rgba(0,0,0,0.1); margin-right: 32px; }
+        .hstat:last-child { border: none; margin: 0; padding: 0; }
+        .hstat-n {
+            font-family: 'DM Serif Display', serif;
+            font-size: 34px; font-style: italic;
+            background: var(--g1);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; line-height: 1;
+        }
+        .hstat-l { font-size: 11px; color: var(--dim); margin-top: 4px; font-weight: 500; }
+        .hero-right { position: relative; z-index: 2; opacity: 0; animation: up 1s 0.2s ease both; }
+        .hero-img-stack { position: relative; }
+        .img-main {
+            width: 100%; aspect-ratio: 3/4; max-height: 580px;
+            border-radius: 24px; overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2); position: relative;
+        }
+        .img-main img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.1) brightness(1.0); }
+        .img-main-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(18,12,5,0.65) 0%, rgba(18,12,5,0.1) 45%, transparent 70%);
+        }
+        .img-main-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+        .img-main-text h3 { font-family: 'DM Serif Display', serif; font-size: 26px; font-style: italic; color: white; line-height: 1.2; }
+        .img-main-text p { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; font-weight: 400; }
+        .img-badge {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 14px; padding: 12px 16px; color: white;
+        }
+        .img-badge-num { font-family: 'DM Serif Display', serif; font-size: 24px; font-style: italic; line-height: 1; }
+        .img-badge-label { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+        .float-card {
+            position: absolute; bottom: 90px; right: -28px;
+            background: white; border-radius: 18px; padding: 16px 20px;
+            box-shadow: 0 20px 48px rgba(0,0,0,0.14); min-width: 180px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .float-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+        .float-card-row { display: flex; align-items: center; gap: 10px; }
+        .float-dot { width: 32px; height: 32px; border-radius: 10px; background: var(--g1); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .float-card-text { font-size: 13px; font-weight: 600; color: var(--ink); }
+        .float-card-sub { font-size: 11px; color: var(--dim); margin-top: 1px; }
+
+        /* TICKER */
+        .ticker { background: white; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06); overflow: hidden; padding: 16px 0; }
+        .ticker-track { display: flex; animation: ticker 25s linear infinite; white-space: nowrap; width: max-content; }
+        .ticker-item { display: inline-flex; align-items: center; gap: 20px; padding: 0 36px; font-size: 13px; font-weight: 500; color: var(--dim); letter-spacing: 0.04em; }
+        .ticker-sep { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--g1); flex-shrink: 0; }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ABOUT */
+        .about-strip {
+            padding: 100px 60px; background: var(--bg);
+            display: grid; grid-template-columns: 0.9fr 1.1fr;
+            gap: 80px; align-items: center;
+            max-width: 1280px; margin: 0 auto;
+        }
+        .about-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+            background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 20px; display: block;
+        }
+        .about-strip h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 58px); line-height: 1.1; letter-spacing: -0.02em; }
+        .about-strip h2 em { font-style: italic; background: var(--g2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .about-right p { font-size: 16px; color: var(--mid); line-height: 1.85; font-weight: 300; margin-bottom: 18px; }
+        .about-right p:last-child { margin: 0; }
+
+        /* PLACES */
+        .places-section { padding: 80px 60px 100px; background: var(--bg2); }
+        .section-header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            margin-bottom: 52px; max-width: 1280px; margin-left: auto; margin-right: auto;
+        }
+        .section-header h2 { font-family: 'DM Serif Display', serif; font-size: clamp(34px, 4vw, 52px); line-height: 1.1; letter-spacing: -0.02em; }
+        .section-count { font-size: 13px; color: var(--dim); font-weight: 500; padding-bottom: 6px; }
+        .grid-wrap { max-width: 1280px; margin: 0 auto; }
+        .places-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+        /* CARDS */
+        .place-card {
+            background: var(--white); border-radius: 22px; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s ease;
+        }
+        .place-card:hover { transform: translateY(-8px); box-shadow: 0 32px 64px rgba(0,0,0,0.13); }
+        .card-img { position: relative; height: 210px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(0.16,1,0.3,1); }
+        .place-card:hover .card-img img { transform: scale(1.07); }
+        .card-img-ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,12,5,0.55) 0%, transparent 55%); }
+        .card-n {
+            position: absolute; top: 14px; right: 14px;
+            background: rgba(255,255,255,0.18); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white; font-family: 'DM Serif Display', serif;
+            font-size: 13px; font-style: italic; padding: 4px 12px; border-radius: 100px;
+        }
+        .card-tag {
+            position: absolute; bottom: 14px; left: 14px;
+            font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 100px;
+        }
+        .card-body { padding: 22px 22px 0; }
+        .card-body h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+        .card-body p { font-size: 13.5px; color: var(--mid); line-height: 1.72; font-weight: 300; }
+        .card-foot { padding: 16px 22px 22px; display: flex; align-items: center; justify-content: space-between; }
+        .card-loc { font-size: 11px; color: var(--dim); font-weight: 500; }
+        .detail-btn {
+            font-size: 12px; font-weight: 600;
+            background: var(--bg2); border: 1px solid rgba(0,0,0,0.08);
+            color: var(--ink); border-radius: 100px; padding: 7px 18px; cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.22s;
+        }
+        .detail-btn:hover { background: var(--g1); color: white; border-color: transparent; box-shadow: 0 6px 16px rgba(232,52,74,0.3); }
+        .info-panel { display: none; padding: 0 22px 22px; border-top: 1px solid rgba(0,0,0,0.06); animation: fadeD 0.3s ease both; }
+        .info-panel.open { display: block; }
+        .info-row { display: flex; gap: 10px; margin-top: 14px; }
+        .info-chip {
+            flex: 1; border-radius: 14px; padding: 12px 14px;
+            background: linear-gradient(135deg, rgba(232,52,74,0.05) 0%, rgba(67,56,202,0.05) 100%);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .info-chip .lb { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 5px; }
+        .info-chip .vl { font-size: 13px; color: var(--ink); font-weight: 400; }
+
+        /* ═══════════════════════════════
+           TECH HUB SECTION — redesigned
+        ═══════════════════════════════ */
+        .tech-section {
+            padding: 110px 60px 100px;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Subtle warm ambient glow — matches site palette */
+        .tech-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 55% at 90% 10%, rgba(232,52,74,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 50% at 5% 90%, rgba(67,56,202,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(217,119,6,0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .tech-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 1; }
+
+        /* Header — same pattern as other sections */
+        .tech-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 64px;
+        }
+        .tech-header-left { max-width: 600px; }
+        .tech-eyebrow {
+            font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+            background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 18px; display: block;
+        }
+        .tech-header h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(36px, 4.5vw, 58px);
+            line-height: 1.1; letter-spacing: -0.025em;
+            color: var(--ink);   /* matches site text */
+        }
+        .tech-header h2 em {
+            font-style: italic;
+            background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tech-desc {
+            font-size: 16px; color: var(--mid); line-height: 1.8;
+            font-weight: 300; margin-top: 18px; max-width: 480px;
+        }
+
+        /* Stats — same style as hero stats */
+        .tech-stats { display: flex; gap: 0; align-items: flex-end; padding-bottom: 6px; }
+        .tech-stat { padding: 0 36px 0 0; border-right: 1px solid rgba(0,0,0,0.1); margin-right: 36px; }
+        .tech-stat:last-child { border: none; margin: 0; padding: 0; }
+        .tech-stat-n {
+            font-family: 'DM Serif Display', serif;
+            font-size: 38px; font-style: italic;
+            background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; line-height: 1;
+        }
+        .tech-stat-l { font-size: 11px; color: var(--dim); margin-top: 5px; font-weight: 500; }
+
+        /* ── Bento grid ── */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            grid-template-rows: 420px 260px;
+            gap: 16px;
+        }
+
+        /* Base card — uses site card styling DNA */
+        .tcard {
+            border-radius: 24px; overflow: hidden; position: relative;
+            border: 1px solid rgba(0,0,0,0.07);
+            background: var(--bg2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s ease;
+        }
+        .tcard:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.13); }
+        .tcard img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
+            filter: brightness(0.82) saturate(1.1);
+        }
+        .tcard:hover img { transform: scale(1.05); filter: brightness(0.9) saturate(1.2); }
+
+        /* Overlay — warmer, matches place-card */
+        .tcard-ov {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(18,12,5,0.82) 0%, rgba(18,12,5,0.18) 50%, transparent 72%);
+        }
+        .tcard-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 26px; }
+        .tcard-tag {
+            display: inline-flex; align-items: center;
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px; padding: 5px 14px;
+            font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: rgba(255,255,255,0.78);
+            margin-bottom: 12px;
+        }
+        .tcard-info h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px; font-style: italic; font-weight: 400;
+            color: white; line-height: 1.2; margin-bottom: 7px;
+        }
+        .tcard-info p { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.6; font-weight: 300; }
+
+        /* Hero card spans both rows */
+        .tcard-hero { grid-row: 1 / 3; }
+        .tcard-hero .tcard-info { padding: 32px; }
+        .tcard-hero h4 { font-size: 30px; margin-bottom: 10px; }
+        .tcard-hero p { font-size: 14px; color: rgba(255,255,255,0.55); }
+
+        /* Gradient badge on hero card */
+        .tcard-badge {
+            position: absolute; top: 20px; left: 20px;
+            background: var(--g1); border-radius: 100px;
+            padding: 6px 16px; font-size: 11px; font-weight: 700;
+            color: white; letter-spacing: 0.04em;
+            box-shadow: 0 4px 16px rgba(232,52,74,0.35);
+        }
+
+        /* ── Companies strip ── same look as site dividers */
+        .tech-companies {
+            margin-top: 52px; padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+        }
+        .tech-co-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: var(--dim);
+            margin-right: 28px; white-space: nowrap;
+        }
+        .tech-co-list { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .tech-co {
+            font-size: 13px; font-weight: 500;
+            color: var(--mid); letter-spacing: 0.02em;
+            padding: 7px 18px; border-radius: 100px;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: white;
+            transition: all 0.22s;
+        }
+        .tech-co:hover {
+            color: var(--ink);
+            border-color: rgba(232,52,74,0.25);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+        }
+
+        /* TIPS */
+        .tips-section { padding: 100px 60px; background: var(--white); }
+        .tips-inner { max-width: 1280px; margin: 0 auto; }
+        .tips-head { margin-bottom: 60px; display: flex; align-items: flex-end; justify-content: space-between; }
+        .tips-head h2 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 4vw, 50px); letter-spacing: -0.02em; }
+        .tips-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .tip-card {
+            border-radius: 20px; padding: 28px 24px;
+            border: 1px solid rgba(0,0,0,0.06); background: var(--bg);
+            transition: all 0.35s ease; cursor: default;
+        }
+        .tip-card:hover { background: white; box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: rgba(232,52,74,0.15); }
+        .tip-icon-box { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 18px; }
+        .tip-icon-box.c1 { background: linear-gradient(135deg, rgba(232,52,74,0.12), rgba(217,119,6,0.12)); }
+        .tip-icon-box.c2 { background: linear-gradient(135deg, rgba(217,119,6,0.12), rgba(5,150,105,0.12)); }
+        .tip-icon-box.c3 { background: linear-gradient(135deg, rgba(67,56,202,0.12), rgba(124,58,237,0.12)); }
+        .tip-icon-box.c4 { background: linear-gradient(135deg, rgba(5,150,105,0.12), rgba(67,56,202,0.12)); }
+        .tip-card h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 10px; }
+        .tip-card p { font-size: 13px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+
+        /* CONTACT */
+        .contact-section { padding: 80px 60px 100px; background: var(--bg2); }
+        .contact-wrap {
+            max-width: 900px; margin: 0 auto; background: white; border-radius: 30px;
+            overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.04);
+            display: grid; grid-template-columns: 0.9fr 1.1fr;
+        }
+        .contact-left-panel { background: var(--ink); padding: 56px 48px; display: flex; flex-direction: column; justify-content: space-between; }
+        .contact-left-panel h2 { font-family: 'DM Serif Display', serif; font-size: 40px; font-style: italic; color: white; line-height: 1.15; margin-bottom: 16px; }
+        .contact-left-panel p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+        .contact-accent-bar { width: 48px; height: 4px; border-radius: 4px; background: var(--g1); margin-top: 40px; }
+        .contact-right-panel { padding: 56px 48px; display: flex; flex-direction: column; gap: 28px; justify-content: center; }
+        .contact-row { display: flex; align-items: flex-start; gap: 18px; }
+        .contact-ico { width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .contact-ico.r { background: linear-gradient(135deg, rgba(232,52,74,0.1), rgba(217,119,6,0.1)); }
+        .contact-ico.b { background: linear-gradient(135deg, rgba(67,56,202,0.1), rgba(124,58,237,0.1)); }
+        .contact-ico.g { background: linear-gradient(135deg, rgba(5,150,105,0.1), rgba(67,56,202,0.1)); }
+        .contact-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+        .contact-val { font-size: 14px; color: var(--ink); font-weight: 500; }
+
+        /* FOOTER */
+        footer { background: var(--ink); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; }
+        .f-logo { font-family: 'DM Serif Display', serif; font-size: 20px; font-style: italic; background: var(--g1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .f-links { display: flex; gap: 24px; }
+        .f-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; font-weight: 400; }
+        .f-links a:hover { color: rgba(255,255,255,0.8); }
+        .f-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+        /* KEYFRAMES */
+        @keyframes up { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeD { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-right { display: none; }
+            .about-strip { grid-template-columns: 1fr; gap: 40px; }
+            .places-grid { grid-template-columns: 1fr 1fr; }
+            .tips-grid { grid-template-columns: 1fr 1fr; }
+            .contact-wrap { grid-template-columns: 1fr; }
+            .contact-left-panel { padding: 40px 40px 32px; }
+            .tech-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 380px 280px 280px; }
+            .tcard-hero { grid-row: 1; grid-column: 1 / 3; }
+            .tech-header { flex-direction: column; gap: 36px; align-items: flex-start; }
+        }
+        @media (max-width: 680px) {
+            nav { width: calc(100% - 32px); padding: 0 6px 0 20px; }
+            .nav-links a:not(.nav-cta) { display: none; }
+            .hero { padding: 100px 24px 60px; }
+            .places-section, .tips-section, .contact-section, .tech-section { padding: 60px 24px; }
+            .about-strip { padding: 60px 24px; }
+            .places-grid { grid-template-columns: 1fr; }
+            .tips-grid { grid-template-columns: 1fr 1fr; }
+            .tech-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 260px); }
+            .tcard-hero { grid-column: 1; grid-row: 1; }
+            footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+            .f-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">Visit Hyderabad</div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#places">Explore</a>
+        <a href="#tech">Tech Hub</a>
+        <a href="#tips">Tips</a>
+        <a href="#contact" class="nav-cta">Contact →</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-left">
+        <div class="hero-chip">
+            <span class="chip-badge">New</span>
+            <span class="chip-text">Discover India's Crown Jewel</span>
+        </div>
+        <h1>
+            Visit<br>
+            <span class="line2">Hyderabad</span>
+        </h1>
+        <p class="hero-body">Where 400 years of Nizam grandeur, world-famous biryani, and breathtaking history collide in one extraordinary city.</p>
+        <div class="hero-btns">
+            <a href="#places" class="b1">Explore Places &nbsp;↓</a>
+            <a href="#tips" class="b2">Travel Tips &nbsp;→</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hstat"><div class="hstat-n">400+</div><div class="hstat-l">Years of history</div></div>
+            <div class="hstat"><div class="hstat-n">9</div><div class="hstat-l">Iconic landmarks</div></div>
+            <div class="hstat"><div class="hstat-n">#1</div><div class="hstat-l">Biryani in India</div></div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="hero-img-stack">
+            <div class="img-main">
+                <img src="Charminar.jpg.png" alt="Charminar">
+                <div class="img-main-overlay"></div>
+                <div class="img-badge">
+                    <div class="img-badge-num">1591</div>
+                    <div class="img-badge-label">Year built</div>
+                </div>
+                <div class="img-main-text">
+                    <h3>Charminar</h3>
+                    <p>Old City, Hyderabad · UNESCO Tentative List</p>
+                </div>
+            </div>
+            <div class="float-card">
+                <div class="float-card-label">Must Try</div>
+                <div class="float-card-row">
+                    <div class="float-dot">🍛</div>
+                    <div>
+                        <div class="float-card-text">Hyderabadi Biryani</div>
+                        <div class="float-card-sub">Paradise Restaurant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+    <div class="ticker-track">
+        <div class="ticker-item">Charminar <div class="ticker-sep"></div> Golconda Fort <div class="ticker-sep"></div> Biryani Capital <div class="ticker-sep"></div> Pearl City <div class="ticker-sep"></div> City of Nawabs <div class="ticker-sep"></div> Hussain Sagar <div class="ticker-sep"></div> Ramoji Film City <div class="ticker-sep"></div> Salar Jung Museum <div class="ticker-sep"></div> Nizam Heritage &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="ticker-item">Charminar <div class="ticker-sep"></div> Golconda Fort <div class="ticker-sep"></div> Biryani Capital <div class="ticker-sep"></div> Pearl City <div class="ticker-sep"></div> City of Nawabs <div class="ticker-sep"></div> Hussain Sagar <div class="ticker-sep"></div> Ramoji Film City <div class="ticker-sep"></div> Salar Jung Museum <div class="ticker-sep"></div> Nizam Heritage &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div style="background:var(--bg);" id="about">
+    <div class="about-strip">
+        <div>
+            <span class="about-label">About the City</span>
+            <h2>The <em>Pearl</em> of<br>the Deccan</h2>
+        </div>
+        <div class="about-right">
+            <p>Hyderabad carries its history like jewels — from the soaring minarets of Charminar to the ancient walls of Golconda Fort. A city where every lane has a story centuries deep.</p>
+            <p>Known the world over for its biryani, its pearls, and its warmhearted people — this is a city that gets into your soul and never quite leaves.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PLACES -->
+<section class="places-section" id="places">
+    <div class="grid-wrap">
+        <div class="section-header">
+            <div>
+                <span class="about-label">Must-See Destinations</span>
+                <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,50px);letter-spacing:-0.02em;">Famous Tourist Places</h2>
+            </div>
+            <div class="section-count">09 destinations</div>
+        </div>
+        <div class="places-grid">
+
+            <div class="place-card">
+                <div class="card-img"><img src="Charminar.jpg.png" alt="Charminar"><div class="card-img-ov"></div><span class="card-n">01</span><span class="card-tag">🕌 Historic Monument</span></div>
+                <div class="card-body"><h3>Charminar</h3><p>The 400-year-old icon of Hyderabad. Four minarets, a view of bazaars stretching to the horizon, and history carved into every stone.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Old City</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Early morning or evening</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹25 for Indians</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Golcondafort.jpg.png" alt="Golconda Fort"><div class="card-img-ov"></div><span class="card-n">02</span><span class="card-tag">🏰 Fort & History</span></div>
+                <div class="card-body"><h3>Golconda Fort</h3><p>A single hand-clap at the entrance echoes to the top. Jaw-dropping acoustic engineering, towering walls, and panoramic city views.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 West Hyderabad</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Nov – Feb (winter)</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹25 for Indians</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Chowmallapalace.jpg.png" alt="Chowmahalla Palace"><div class="card-img-ov"></div><span class="card-n">03</span><span class="card-tag">👑 Royal Palace</span></div>
+                <div class="card-body"><h3>Chowmahalla Palace</h3><p>Grand durbar halls, manicured gardens, vintage cars — the Nizam's palace gives you a front-row seat to Hyderabadi royalty.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Old City</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">All year round</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹100 for Indians</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Salarjungmuseum.jp.png" alt="Salar Jung Museum"><div class="card-img-ov"></div><span class="card-n">04</span><span class="card-tag">🏛️ Museum & Art</span></div>
+                <div class="card-body"><h3>Salar Jung Museum</h3><p>One of India's largest museums — centuries of art, sculptures, and antiques. The Veiled Rebecca alone is worth the trip.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Dar-ul-Shifa</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Except Fridays</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹50 for Indians</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="HussainSagar.jpg.png" alt="Hussain Sagar"><div class="card-img-ov"></div><span class="card-n">05</span><span class="card-tag">🚤 Lake & Nature</span></div>
+                <div class="card-body"><h3>Hussain Sagar Lake</h3><p>A 1563 heart-shaped lake with a 17-metre Buddha rising from its centre. Golden-hour boat rides here are something else.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Tankbund</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Evening 4–7 PM</div></div><div class="info-chip"><div class="lb">Boat Ride</div><div class="vl">₹50 – ₹200</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="RamojiFIlmCity.jpg.png" alt="Ramoji Film City"><div class="card-img-ov"></div><span class="card-n">06</span><span class="card-tag">🎬 Film & Fun</span></div>
+                <div class="card-body"><h3>Ramoji Film City</h3><p>World's largest film studio complex. Real sets, live shows, full cinematic experience. Block an entire day — you'll need it.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Hayathnagar</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">October to March</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹1,200 onwards</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Nehru Zoo.jpg.png" alt="Nehru Zoo"><div class="card-img-ov"></div><span class="card-n">07</span><span class="card-tag">🦁 Wildlife & Nature</span></div>
+                <div class="card-body"><h3>Nehru Zoological Park</h3><p>380 acres of wildlife — lions, tigers, elephants in near-natural habitats. One of India's finest zoos, massively underrated.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Bahadurpura</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Winter mornings</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">₹60 for adults</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Lalbazaar.jpg.png" alt="Laad Bazaar"><div class="card-img-ov"></div><span class="card-n">08</span><span class="card-tag">💎 Shopping & Culture</span></div>
+                <div class="card-body"><h3>Laal Bazaar</h3><p>Bangles, pearls, lacquerwork, street food — Hyderabad's most legendary market near Charminar. Bargaining is mandatory.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Near Charminar</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Morning to evening</div></div><div class="info-chip"><div class="lb">Famous For</div><div class="vl">Bangles & Pearls</div></div></div></div>
+            </div>
+
+            <div class="place-card">
+                <div class="card-img"><img src="Birlamandir.jpg.png" alt="Birla Mandir"><div class="card-img-ov"></div><span class="card-n">09</span><span class="card-tag">🕍 Temple & Spirituality</span></div>
+                <div class="card-body"><h3>Birla Mandir</h3><p>Gleaming white marble on a hilltop. Sweeping 360° views over the city at sunset. Completely free, completely stunning.</p></div>
+                <div class="card-foot"><span class="card-loc">📍 Naubat Pahad</span><button class="detail-btn" onclick="toggleInfo(this)">Details ↓</button></div>
+                <div class="info-panel"><div class="info-row"><div class="info-chip"><div class="lb">Best Time</div><div class="vl">Early morning or evening</div></div><div class="info-chip"><div class="lb">Entry Fee</div><div class="vl">Free</div></div></div></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════
+     THE TECH HUB — redesigned
+═══════════════════════════════ -->
+<section class="tech-section" id="tech">
+    <div class="tech-inner">
+
+        <div class="tech-header">
+            <div class="tech-header-left">
+                <span class="tech-eyebrow">Madhapur · HITEC City · Gachibowli</span>
+                <h2>The <em>Tech Hub</em><br>of India</h2>
+                <p class="tech-desc">From Madhapur's glass towers to Gachibowli's gleaming financial district — Hyderabad's western corridor is where India's most ambitious tech story is being written.</p>
+            </div>
+            <div class="tech-stats">
+                <div class="tech-stat">
+                    <div class="tech-stat-n">1,500+</div>
+                    <div class="tech-stat-l">Tech companies</div>
+                </div>
+                <div class="tech-stat">
+                    <div class="tech-stat-n">₹6L Cr</div>
+                    <div class="tech-stat-l">Annual IT exports</div>
+                </div>
+                <div class="tech-stat">
+                    <div class="tech-stat-n">7L+</div>
+                    <div class="tech-stat-l">IT professionals</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-grid">
+
+            <!-- Hero — HITEC skyline -->
+            <div class="tcard tcard-hero">
+                <img src="hitec.jpg.png" alt="HITEC City">
+                <div class="tcard-ov"></div>
+                <div class="tcard-badge">📍 Madhapur, HITEC City</div>
+                <div class="tcard-info">
+                    <h4>HITEC City — Where India Builds Tomorrow</h4>
+                    <p>The glass-and-steel skyline of Madhapur houses JP Morgan, AMD, Meta and hundreds of global giants. India's most concentrated tech corridor, stretching 12 km from Kukatpally to Gachibowli.</p>
+                </div>
+            </div>
+
+            <!-- Gachibowli Financial District -->
+            <div class="tcard">
+                <img src="findistrict.jpg.png" alt="Gachibowli Financial District">
+                <div class="tcard-ov"></div>
+                <div class="tcard-info">
+                    <div class="tcard-tag">💼 Gachibowli</div>
+                    <h4>The Financial District</h4>
+                    <p>Glass towers on Outer Ring Road — India's fastest-growing IT and banking hub.</p>
+                </div>
+            </div>
+
+            <!-- R&D / Innovation -->
+            <div class="tcard">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=700&q=80" alt="Tech innovation office">
+                <div class="tcard-ov"></div>
+                <div class="tcard-info">
+                    <div class="tcard-tag">🔬 R&D Powerhouse</div>
+                    <h4>Engineering at Scale</h4>
+                    <p>Microsoft's largest campus outside Redmond. Google, Amazon & Meta all run major engineering centres here.</p>
+                </div>
+            </div>
+
+            <!-- Night skyline -->
+            <div class="tcard">
+                <img src="Skyline.jpg.png" alt="HITEC City at night">
+                <div class="tcard-ov"></div>
+                <div class="tcard-info">
+                    <div class="tcard-tag">🌃 After Dark</div>
+                    <h4>The Skyline at Night</h4>
+                    <p>HITEC City never sleeps — a glittering grid of neon and glass long after midnight.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Companies strip -->
+        <div class="tech-companies">
+            <span class="tech-co-label">Home to</span>
+            <div class="tech-co-list">
+                <span class="tech-co">Microsoft</span>
+                <span class="tech-co">Google</span>
+                <span class="tech-co">Amazon</span>
+                <span class="tech-co">Meta</span>
+                <span class="tech-co">Apple</span>
+                <span class="tech-co">Infosys</span>
+                <span class="tech-co">TCS</span>
+                <span class="tech-co">Wipro</span>
+                <span class="tech-co">Deloitte</span>
+                <span class="tech-co">JP Morgan</span>
+                <span class="tech-co">HSBC</span>
+                <span class="tech-co">UBS</span>
+                <span class="tech-co">Cognizant</span>
+                <span class="tech-co">HCL</span>
+                <span class="tech-co">Qualcomm</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-section" id="tips">
+    <div class="tips-inner">
+        <div class="tips-head">
+            <div>
+                <span class="about-label">Insider Knowledge</span>
+                <h2>Travel Tips</h2>
+            </div>
+            <span style="font-size:13px;color:var(--dim);font-weight:500;padding-bottom:6px;">8 essential tips</span>
+        </div>
+        <div class="tips-grid">
+            <div class="tip-card"><div class="tip-icon-box c1">🌤️</div><h4>Best Season</h4><p>October to March — cool, clear, and perfect for sightseeing. Avoid May–June heat.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c2">🍛</div><h4>Must-Eat</h4><p>Hyderabadi Biryani at Bawarchi — the real deal. Non-negotiable.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c3">🚇</div><h4>Getting Around</h4><p>Metro is fast, cheap and air-conditioned. Best way to cover major attractions.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c4">☕</div><h4>Local Snacks</h4><p>Irani chai + Osmania biscuits every morning. Qubani ka Meetha for dessert.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c1">✨</div><h4>Evening Magic</h4><p>Charminar after sunset — the illumination turns it into something ethereal.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c2">🛍️</div><h4>Shopping Tips</h4><p>Bargain at Laal Bazaar — start at 50% of asking price. It's the culture.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c3">🧴</div><h4>Stay Comfortable</h4><p>Sunscreen + water bottle always. Summers hit 42°C — pace yourself outside.</p></div>
+            <div class="tip-card"><div class="tip-icon-box c4">📅</div><h4>Plan Smart</h4><p>Monuments close on Fridays. Check timings in advance, plan around it.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="contact-wrap">
+        <div class="contact-left-panel">
+            <div>
+                <span style="font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Get in Touch</span>
+                <h2 style="margin-top:12px;">Let's plan your trip.</h2>
+                <p style="margin-top:16px;">Have questions about Hyderabad? Want to know the best itinerary? We're here to help you have the trip of a lifetime.</p>
+            </div>
+            <div class="contact-accent-bar"></div>
+        </div>
+        <div class="contact-right-panel">
+            <div class="contact-row">
+                <div class="contact-ico r">📧</div>
+                <div><div class="contact-label">Email</div><div class="contact-val">fancypants@gmail.com</div></div>
+            </div>
+            <div class="contact-row">
+                <div class="contact-ico b">📞</div>
+                <div><div class="contact-label">Phone</div><div class="contact-val">+91 9876543210</div></div>
+            </div>
+            <div class="contact-row">
+                <div class="contact-ico g">📍</div>
+                <div><div class="contact-label">Address</div><div class="contact-val">Tourism Office, Hyderabad, Telangana</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="f-logo">Visit Hyderabad</div>
+    <div class="f-links">
+        <a href="#home">Home</a>
+        <a href="#places">Explore</a>
+        <a href="#tech">Tech Hub</a>
+        <a href="#tips">Tips</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 Visit Hyderabad. All rights reserved.</div>
+</footer>
+
+<script>
+    function toggleInfo(btn) {
+        const card = btn.closest('.place-card');
+        const panel = card.querySelector('.info-panel');
+        const isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+        btn.textContent = isOpen ? 'Details ↓' : 'Close ↑';
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                setTimeout(() => el.classList.add('visible'), el.dataset.delay || 0);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.07 });
+
+    document.querySelectorAll('.place-card').forEach((card, i) => {
+        card.dataset.delay = (i % 3) * 90;
+        observer.observe(card);
+    });
+    document.querySelectorAll('.tip-card').forEach((tip, i) => {
+        tip.dataset.delay = i * 55;
+        observer.observe(tip);
+    });
+</script>
+</body>
+</html>
